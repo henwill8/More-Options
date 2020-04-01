@@ -1,3 +1,4 @@
 1: Get No Arrows value as it is pressed
 2: Set the rot and pos values accordingly to if darth maul mode is on
 3: Set trail intensity max value to a bigger float
+4: Set the menu controller position accordingly to pos values
