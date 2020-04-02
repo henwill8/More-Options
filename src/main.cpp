@@ -24,7 +24,7 @@ MAKE_HOOK_OFFSETLESS(DidActivate, void, Il2CppObject* self, bool firstActivation
 
     float num = 50.0f;//This will be the maximum value of the sliders
     float num2 = -num;//This will be the minimum value the sliders (set to negative of num)
-	int numberOfSteps = ((num - num2) / 0.1f) + 1;//Finding the number of steps
+    int numberOfSteps = ((num - num2) / 0.1f) + 1;//Finding the number of steps
     
     il2cpp_utils::GetFieldValue(&posXSlider, self, "_posXSlider");//Finding the position X slider
 
@@ -155,7 +155,26 @@ extern "C" void load() {//Called when installing the hooks
     if(!fileexists("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataX.txt")) {
         writefile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataX.txt", "0");
     }
-
+    if(!fileexists("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataY.txt")) {
+        writefile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataY.txt", "0.0");
+    }
+    if(!fileexists("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataZ.txt")) {
+        writefile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataZ.txt", "0.0");
+    }
+    if(!fileexists("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataRotX.txt")) {
+        writefile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataRotX.txt", "0.0");
+    }
+    if(!fileexists("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataRotY.txt")) {
+        writefile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataRotY.txt", "0.0");
+    }
+    if(!fileexists("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataRotZ.txt")) {
+        writefile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataRotZ.txt", "0.0");
+    }
+	
+    xSliderValue = charToFloat(readfile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataX.txt"));
+    ySliderValue = charToFloat(readfile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataY.txt"));
+    zSliderValue = charToFloat(readfile("storage/emulated/0/Android/data/com.beatgames.beatsaber/files/MoreOptionsDataZ.txt"));
+	
     log(INFO, "Installing hooks...");//Logging "Installing hooks..." before the hooks have started to hook
     INSTALL_HOOK_OFFSETLESS(DidActivate, il2cpp_utils::FindMethodUnsafe("", "ControllersTransformSettingsViewController", "DidActivate", 2));//Changes the slider minimum and maximum values
     //INSTALL_HOOK_OFFSETLESS(EnteredSettings, il2cpp_utils::FindMethodUnsafe("", "SettingsNavigationController", "DidActivate", 2));//Changes the slider value to the stored value
